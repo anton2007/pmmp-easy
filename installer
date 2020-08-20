@@ -24,7 +24,7 @@ case $CHOICE in
         1)
             tar -zxvf PHP_5.6.10_x86_Linux.tar.gz
             echo "./bin/php5/bin/php ./PocketMine-MP.phar --no-wizard --disable-ansi" > start.sh
-	    chmod +x install.sh
+	    chmod +x start.sh
 	    clear
 	    echo "You can start server with sh start.sh"
 	    if [ $? -eq 2 ]
