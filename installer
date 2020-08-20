@@ -1,5 +1,6 @@
 #!/bin/bash
 
+phar="PocketMine-MP.phar"
 HEIGHT=15
 WIDTH=40
 CHOICE_HEIGHT=4
@@ -34,19 +35,19 @@ case $CHOICE in
 	    fi
             ;;
         2)
-            rm PocketMine-MP.phar
 	    rm -rf bin
 	    echo "PocketMine-MP Removed"
             ;;
 	3)
-	    if [ -e "PocketMine-MP.phar" ]
-	    then
-	    echo -e "==============================="
-	    echo -e "Starting PocketMineMP Zekkou Cake Server"
-	    echo -e "==============================="
-	    ./bin/php5/bin/php ./PocketMine-MP.phar
+	    if [ -e $phar ]; then
+	    	echo -e "============================================"
+	    	echo -e "= Starting PocketMineMP Zekkou Cake Server ="
+	    	echo -e "============================================"
+	    	./bin/php5/bin/php ./PocketMine-MP.phar
+	    else
+	   	 echo "PocketMine-MP not installed"
 	    fi
-	    ;;)
+	    ;;
         4)
             echo "Goodbye"
             ;;
