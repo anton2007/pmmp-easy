@@ -9,7 +9,8 @@ MENU="Choose one of the following options:"
 
 OPTIONS=(1 "Install PocketMine-MP"
          2 "Remove PocketMine-MP"
-         3 "Exit")
+	 3 "Run PocketMine-MP"
+         4 "Exit")
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
@@ -24,6 +25,9 @@ case $CHOICE in
         1)
             tar -zxvf PHP_5.6.10_x86_Linux.tar.gz
             echo "./bin/php5/bin/php ./PocketMine-MP.phar --no-wizard --disable-ansi" > start.sh
+	    chmod +x start.sh
+	    clear
+	    echo "You can start server with sh start.sh"
 	    if [ $? -eq 2 ]
   	    then
     	    echo "Can't find tar.gz please clone repository again"
@@ -34,7 +38,16 @@ case $CHOICE in
 	    rm -rf bin
 	    echo "PocketMine-MP Removed"
             ;;
-        3)
+	3)
+	    if [ -e "PocketMine-MP.phar" ]
+	    then
+	    echo -e "==============================="
+	    echo -e "Starting PocketMineMP Zekkou Cake Server"
+	    echo -e "==============================="
+	    ./bin/php5/bin/php ./PocketMine-MP.phar
+	    fi
+	    ;;)
+        4)
             echo "Goodbye"
             ;;
 esac
