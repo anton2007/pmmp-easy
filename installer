@@ -1,0 +1,40 @@
+#!/bin/bash
+
+HEIGHT=15
+WIDTH=40
+CHOICE_HEIGHT=4
+BACKTITLE="Install PocketMine-MP"
+TITLE="PocketMine-MP Installer"
+MENU="Choose one of the following options:"
+
+OPTIONS=(1 "Install PocketMine-MP"
+         2 "Remove PocketMine-MP"
+         3 "Exit")
+
+CHOICE=$(dialog --clear \
+                --backtitle "$BACKTITLE" \
+                --title "$TITLE" \
+                --menu "$MENU" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                2>&1 >/dev/tty)
+
+clear
+case $CHOICE in
+        1)
+            tar -zxvf PHP_5.6.10_x86_Linux.tar.gz
+            echo "./bin/php5/bin/php ./PocketMine-MP.phar --no-wizard --disable-ansi" > start.sh
+	    if [ $? -eq 2 ]
+  	    then
+    	    echo "Can't find tar.gz please clone repository again"
+	    fi
+            ;;
+        2)
+            rm PocketMine-MP.phar
+	    rm -rf bin
+	    echo "PocketMine-MP Removed"
+            ;;
+        3)
+            echo "Goodbye"
+            ;;
+esac
