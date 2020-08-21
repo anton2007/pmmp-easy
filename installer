@@ -1,5 +1,5 @@
 #!/bin/bash
-
+arch=$(uname -m)
 phar="PocketMine-MP.phar"
 HEIGHT=15
 WIDTH=40
@@ -12,6 +12,11 @@ OPTIONS=(1 "Install PocketMine-MP"
          2 "Remove PocketMine-MP"
 	 3 "Run PocketMine-MP"
          4 "Exit")
+
+if  [[ $arch == arm* ]]; then
+    echo "ARM Unsupported Sorry ;("
+    exit 1
+fi
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
@@ -40,9 +45,9 @@ case $CHOICE in
             ;;
 	3)
 	    if [ -e $phar ]; then
-	    	echo -e "============================================"
-	    	echo -e "= Starting PocketMineMP Zekkou Cake Server ="
-	    	echo -e "============================================"
+	    	echo -e "\e[92m============================================="
+	    	echo -e "\e[92m| Starting PocketMine-MP Zekkou Cake Server |"
+	    	echo -e "\e[92m============================================="
 	    	./bin/php5/bin/php ./PocketMine-MP.phar
 	    else
 	   	 echo "PocketMine-MP not installed"
